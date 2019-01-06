@@ -32,6 +32,25 @@ const sugestions = {
           option: "mais de 1 hora"
         }
       ]
+    },
+    {
+      id: 2,
+      title: "Que tipo de jogo gosta?",
+      type: "select",
+      options: [
+        {
+          id: 0,
+          option: "FPS"
+        },
+        {
+          id: 1,
+          option: "RPG"
+        },
+        {
+          id: 2,
+          option: "Puzzle"
+        }
+      ]
     }
   ],
   results: ["mario", "zelda", "topgear", "cs", "metalslug", "gta"],
