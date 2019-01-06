@@ -1,9 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+
+import { StyleResult } from "./style";
 
 export default class Result extends Component {
   render() {
     return (
-      <Fragment>
+      <StyleResult>
         <h1>Result</h1>
         {this.props.answers.map(e => {
           return (
@@ -24,9 +26,9 @@ export default class Result extends Component {
           );
         })}
         <button type="button" onClick={this.props.onStart}>
-          Restart
+          Reiniciar
         </button>
-      </Fragment>
+      </StyleResult>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
-// import Result from "../result";
+
+import { StyleForm } from "./style";
 
 export default class Form extends Component {
   state = {
@@ -75,7 +76,7 @@ export default class Form extends Component {
                     });
                   }}
                 >
-                  <option value="0">-- Select</option>
+                  <option value="0">-- Selecione</option>
 
                   {question.options.map((option, i) => {
                     return (
@@ -106,7 +107,7 @@ export default class Form extends Component {
 
   render() {
     return (
-      <Fragment>
+      <StyleForm>
         <h1>Form</h1>
         <form onSubmit={this.handleOnSubmit}>
           {this.handleCreateElement()}
@@ -115,12 +116,12 @@ export default class Form extends Component {
               type="button"
               onClick={() => this.props.onComplete(this.state.answers)}
             >
-              Finish
+              Finalizar
             </button>
-            <button type="submit">Next</button>
+            <button type="submit">Próximo</button>
           </div>
         </form>
-      </Fragment>
+      </StyleForm>
     );
   }
 }
