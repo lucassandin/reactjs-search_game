@@ -12,12 +12,14 @@ const sugestions = {
     {
       id: 0,
       title: "Você gosta de interagir com as pessoas?",
-      type: "boolean"
+      type: "boolean",
+      name: "radio"
     },
     {
       id: 1,
       title: "Quanto tempo você quer jogar?",
       type: "select",
+      name: "game_time",
       options: [
         {
           id: 0,
@@ -37,6 +39,7 @@ const sugestions = {
       id: 2,
       title: "Que tipo de jogo gosta?",
       type: "select",
+      name: "type_game",
       options: [
         {
           id: 0,
@@ -94,10 +97,6 @@ export default class Main extends Component {
   onNext = () => {
     this.setState({ step: this.state.step + 1 });
   };
-
-  teste() {
-    this.setState({ step: 0 });
-  }
 
   render() {
     switch (this.state.step) {

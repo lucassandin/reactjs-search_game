@@ -5,19 +5,54 @@ import { StyleForm } from "./style";
 export default class Form extends Component {
   state = {
     step: 0,
-    answers: []
+    answers: [],
+    input: { id: "", value: "", title: "", name: "" }
+  };
+
+  next = () => {
+    let answers = this.state.answers;
+
+    if (this.state.input.value !== "") {
+      answers = {
+        id: Math.floor(Math.random() * 1000 + 1),
+        title: this.state.input.title,
+        answer: this.state.input.value
+      };
+
+      this.setState(
+        {
+          answers: [...this.state.answers, answers],
+          input: { id: "", value: "", title: "", name: "" }
+        },
+        () => {
+          if (this.props.questions.length === this.state.step) {
+            this.props.onComplete(this.state.answers);
+          }
+        }
+      );
+
+      return true;
+    } else {
+      return false;
+    }
   };
 
   onChange = (event, obj) => {
-    let answers = this.state.answers;
-
-    answers = {
-      id: Math.floor(Math.random() * 1000 + 1),
-      title: obj.title,
-      answer: event.target.value
-    };
-
-    this.setState({ answers: [...this.state.answers, answers] });
+    let aux =
+      this.state.answers &&
+      this.state.answers.find(e => {
+        return e.name === event.target.name;
+      });
+    if (aux === undefined) {
+      this.setState({
+        input: {
+          id: Math.floor(Math.random() * 10 + 1),
+          value: event.target.value,
+          title: obj.title,
+          name: event.target.name
+        }
+      });
+    }
   };
 
   // function to create dynamic element
@@ -35,7 +70,7 @@ export default class Form extends Component {
                 <label>
                   <input
                     type="radio"
-                    name="booleano"
+                    name={question.name}
                     value="Sim"
                     onChange={event =>
                       this.onChange(event, {
@@ -48,9 +83,8 @@ export default class Form extends Component {
                 <label>
                   <input
                     type="radio"
-                    name="booleano"
+                    name={question.name}
                     value="Não"
-                    defaultChecked
                     onChange={event =>
                       this.onChange(event, {
                         title: question.title
@@ -68,15 +102,16 @@ export default class Form extends Component {
                 <h4>{question.title}</h4>
 
                 <select
-                  defaultValue="0"
+                  defaultValue=""
                   key={question.id}
+                  name={question.name}
                   onChange={event => {
                     this.onChange(event, {
                       title: question.title
                     });
                   }}
                 >
-                  <option value="0">-- Selecione</option>
+                  <option value="">-- Selecione</option>
 
                   {question.options.map((option, i) => {
                     return (
@@ -102,7 +137,13 @@ export default class Form extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
 
-    this.setState({ step: this.state.step + 1 });
+    if (this.next()) {
+      this.setState({
+        step: this.state.step + 1
+      });
+    } else {
+      alert("Favor responder à pergunta");
+    }
   };
 
   render() {
@@ -112,12 +153,6 @@ export default class Form extends Component {
         <form onSubmit={this.handleOnSubmit}>
           {this.handleCreateElement()}
           <div>
-            <button
-              type="button"
-              onClick={() => this.props.onComplete(this.state.answers)}
-            >
-              Finalizar
-            </button>
             <button type="submit">Próximo</button>
           </div>
         </form>
