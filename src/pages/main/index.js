@@ -34,6 +34,7 @@ const sugestions = {
           option: "mais de 1 hora"
         }
       ]
+<<<<<<< HEAD
     },
     {
       id: 2,
@@ -54,6 +55,8 @@ const sugestions = {
           option: "Puzzle"
         }
       ]
+=======
+>>>>>>> parent of ef943c2... update
     }
   ],
   results: ["mario", "zelda", "topgear", "cs", "metalslug", "gta"],
