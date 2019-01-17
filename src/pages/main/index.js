@@ -34,7 +34,6 @@ const sugestions = {
           option: "mais de 1 hora"
         }
       ]
-<<<<<<< HEAD
     },
     {
       id: 2,
@@ -55,8 +54,6 @@ const sugestions = {
           option: "Puzzle"
         }
       ]
-=======
->>>>>>> parent of ef943c2... update
     }
   ],
   results: ["mario", "zelda", "topgear", "cs", "metalslug", "gta"],
@@ -131,7 +128,6 @@ export default class Main extends Component {
           <StyleMain>
             <div>
               <h1>Search Game</h1>
-              <h3>Bem vindo</h3>
               <p>{sugestions.welcomeTitle}</p>
               <button type="button" onClick={this.onNext}>
                 Começar
